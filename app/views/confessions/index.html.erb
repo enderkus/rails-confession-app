@@ -1,0 +1,33 @@
+<div class="container pt-5">
+  <div class="row justify-content-center pt-5">
+    <div class="col-md-8">
+      <div class="row hero">
+        <h1 class="fs-1"><%= @slogan %></h1>
+        <p><%= @page_description %></p>
+        <div class="d-grid gap-2 d-md-flex">
+          <a href="<%= new_confession_path %>" class="btn btn-dark rounded-pill">Write Confess</a>
+        </div>
+
+        <div class="mt-5">
+          <% @confessions.each do |confession| %>
+          <div class="card <%= confession_gender_border_css_class(confession.gender) %> mb-4">
+            <h5 class="card-header bg-transparent <%= title_hover_style(confession.gender) %>">
+              <a href="<%= confession_path(confession) %>" class="text-decoration-none text-dark"><span class="<%= confession_gender_text_css_class(confession.gender) %>"><%= gender_symbol(confession.gender) %>️</span> <%= confession.title %></a>
+            </h5>
+            <div class="card-body">
+              <p><%= confession.confession %></p>
+            </div>
+            <div class="card-footer bg-transparent d-flex justify-content-between">
+              <span><a href="<%= confession_path(confession) %>" class="<%= confession_gender_text_css_class(confession.gender) %> text-decoration-none">🗓️ <%= confession.created_at.strftime("%B , %e , %Y") %></a></span>
+              <span><a href="<%= confession_path(confession) %>" class="<%= confession_gender_text_css_class(confession.gender) %> text-decoration-none">💬 <%= confession.comments.count %></a></span>
+            </div>
+          </div>
+          <% end %>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<% if flash[:notice].present? %>
+  <p class="alert alert-success text-center">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
+
+<% if flash[:alert].present? %>
+  <p class="alert alert-danger text-center">
+    <%= flash[:alert]  %>
+  </p>
+<% end %>
+
+<div class="container pt-5">
+  <div class="row justify-content-center pt-5">
+    <div class="col-md-8">
+      <div class="row hero">
+        <h1 class="fs-3 <%= confession_gender_text_css_class(@confession.gender) %>"><%= gender_symbol(@confession.gender) %>️ <%= @confession.title %></h1>
+        <p><%= @confession.confession %></p>
+        <div class="d-flex justify-content-between">
+          <span>🗓️ <%= @confession.created_at.strftime("%B, %e , %Y") %></span>
+          <span>👁️ <%= @confession.views %></span>
+        </div>
+
+
+        <div class="mt-5">
+          <%= render 'comments/form' ,confession: @confession %>
+
+          <% @confession.comments.order(created_at: :desc).each do |comment| %>
+          <div class="card mb-4">
+            <div class="card-body">
+              <p><%= comment.comment %></p>
+            </div>
+          </div>
+          <% end %>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

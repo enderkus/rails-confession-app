@@ -1,0 +1,19 @@
+<%= form_with(model: [@confession, Comment.new], url: confession_comments_path(@confession)) do |f| %>
+  <div class="card mb-4">
+    <h5 class="card-header bg-dark text-white">
+      Write a Comment
+    </h5>
+    <div class="card-body">
+
+      <%= f.label :comment , "Your Comment", {class: 'form-label'} %>
+      <%= f.text_area :comment , {class: 'form-control', rows: '3', required: 'true'}%>
+
+    </div>
+    <div class="card-footer bg-transparent">
+      <%= f.submit  "Send Your Comment", {class: 'btn btn-dark rounded-pill' } %>
+      <input type="reset" class="btn btn-outline-dark rounded-pill" value="Clear All">
+    </div>
+  </div>
+<% end %>
+
+

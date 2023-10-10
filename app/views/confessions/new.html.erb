@@ -1,0 +1,60 @@
+<div class="container pt-5">
+  <div class="row justify-content-center pt-5">
+    <div class="col-md-8">
+      <div class="row hero">
+        <h1 class="fs-1">😉 Don't worry, it's all between us.</h1>
+        <p>You can write confess as a anonymous be relax, trust we and write it :)</p>
+
+        <% if @confession.errors.any? %>
+          <h2>
+            <%= pluralize(@confession.errors.count, 'error') %> prohibited this confession from being saved:
+          </h2>
+
+          <%@confession.errors.full_messages.each do |message| %>
+            <p class="alert alert-danger"><%= message %></p>
+          <% end %>
+        <% end %>
+
+
+        <div class="mt-5">
+          <%= form_with(model: @confession) do |f| %>
+            <div class="card border-dark">
+              <div class="card-body">
+
+                <div class="mb-3">
+                  <%= f.label :title, "Confess Title", { class: 'form-label'} %>
+                  <%= f.text_field :title, {class: 'form-control', placeholder: "What about ?"} %>
+                </div>
+
+                <div class="mb-3">
+                  <%= f.label :confession, "Confess Content", {class: 'form-label'} %>
+                  <%= f.text_area :confession, {class: 'form-control', placeholder:"Type here..", rows:"10"} %>
+                </div>
+
+                <div class="mb-3">
+                  <p>Select your gender :</p>
+
+                  <%= f.radio_button :gender, '1', { class: 'btn-check' } %>
+                  <%= f.label :gender, "Female", {class: 'btn btn-outline-warning mr-2', for: 'confession_gender_1'} %>
+                  ||
+                  <%= f.radio_button :gender, '0', { class: 'btn-check' } %>
+                  <%= f.label :gender, "Male", {class: 'btn btn-outline-primary mr-2', for: 'confession_gender_0'} %>
+                </div>
+
+              </div>
+
+              <div class="card-footer bg-transparent">
+                <%= f.submit "Send Your Confess", { class: 'btn btn-dark rounded-pill'} %>
+                <input type="reset" class="btn btn-outline-dark rounded-pill" value="Clear All">
+              </div>
+
+
+
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
