@@ -1,5 +1,9 @@
 # README
 
+Screenshot
+
+![ScreenShot](https://github.com/enderkus/rails-confession-app/blob/main/confessionapp.webm)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
